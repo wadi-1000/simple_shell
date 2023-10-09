@@ -10,5 +10,6 @@
 void prompt(void);
 int _putchar(char c);
 void print_array(char *array);
+void exec(char *array[]);
 
 #endif

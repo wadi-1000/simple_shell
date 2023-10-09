@@ -11,7 +11,7 @@ void prompt(void)
 	char *buffer = malloc(1024);
 	size_t len = 1024;
 	char *token;
-	char *array = malloc(1024);
+	char **array = malloc(1024 * sizeof(char *));
 	int i = 0;
 
 	while (1)
@@ -23,9 +23,11 @@ void prompt(void)
 		token = strtok(buffer, " ");
 		while (token)
 		{
-			array[i] = *token;
+			array[i] = strdup(token);
 			token = strtok(NULL, " ");
 			i++;
 		}
+		array[i] = NULL;
+		exec(array);
 	}
 }
