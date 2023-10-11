@@ -6,10 +6,16 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/wait.h>
+#include <error.h>
 
 void prompt(void);
 int _putchar(char c);
-void print_array(char *array);
-void exec(char *array[]);
+
+char **tokenize_input(char *input);
+void free_tokens(char **tokens);
+void exec_input(char *argv[]);
+size_t input_length;
+
 
 #endif

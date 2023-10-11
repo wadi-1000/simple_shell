@@ -1,19 +1,10 @@
 #include "main.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <errno.h>
 
 /**
  * prompt - displays prompt and waits for user to enter commands
  *
+ * Return: Nothing
  */
-char **tokenize_input(char *input);
-void free_tokens(char **tokens);
-void exec_input(char *argv[]);
-size_t input_length;
 
 void prompt(void)
 {
@@ -54,35 +45,6 @@ void prompt(void)
 		}
 	}
 	free(buffer);
-}
-
-
-/**
- * tokenize_input - Function that toenizes the user's input
- * @input: The user input string
- * Return: An array of tokens
- */
-char **tokenize_input(char *input)
-{
-	char *token;
-	char **array = malloc(1024 * sizeof(char *));
-	int i = 0;
-
-	token = strtok(input, " ");
-	while (token)
-	{
-		array[i] = strdup(token);
-		token = strtok(NULL, " ");
-		i++;
-	}
-	array[i] = NULL;
-
-	if (i == 0)
-	{
-		free(array);
-		return (NULL);
-	}
-	return (array);
 }
 
 /**
