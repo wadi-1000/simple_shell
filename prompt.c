@@ -47,12 +47,10 @@ void prompt(void)
 	free(buffer);
 }
 
-/*
+/**
  * exec_input - Execute the command entered by the user.
  * @argv: Array of command arguments.
  *
- * Description: It forks a new process to execute a command with
- * the arguments given by the user.
  *
  * Return: exits the process upon success or failure.
  */
@@ -73,7 +71,8 @@ void exec_input(char *argv[])
 	{
 		if (execvp(argv[0], argv) < 0)
 		{
-			fprintf(stderr,"Execution failed. Incorrect command or no such file/directory.\n");
+			fprintf(stderr, "Execution failed. Incorrect command
+					or no such file/directory.\n");
 			return;
 		}
 	}

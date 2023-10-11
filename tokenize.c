@@ -10,7 +10,7 @@ char **tokenize_input(char *input)
 	char *token;
 	char **array = malloc(1024 * sizeof(char *));
 	int i = 0;
-	
+
 	token = strtok(input, " ");
 	while (token)
 	{
@@ -19,7 +19,7 @@ char **tokenize_input(char *input)
 		i++;
 	}
 	array[i] = NULL;
-	
+
 	if (i == 0)
 	{
 		free(array);
