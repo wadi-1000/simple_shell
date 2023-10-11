@@ -11,11 +11,11 @@
 
 void prompt(void);
 int _putchar(char c);
-
 char **tokenize_input(char *input);
 void free_tokens(char **tokens);
 void exec_input(char *argv[]);
 size_t input_length;
+void free_token(char **token);
 
 
 #endif

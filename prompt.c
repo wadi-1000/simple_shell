@@ -47,21 +47,6 @@ void prompt(void)
 	free(buffer);
 }
 
-/**
- * free_tokens - Function that fress the memory used by the array
- * @tokens: Array of tokens to free
- */
-void free_tokens(char **tokens)
-{
-	int i;
-
-	for (i = 0; tokens[i]; i++)
-	{
-		free(tokens[i]);
-	}
-	free(tokens);
-}
-
 /*
  * exec_input - Execute the command entered by the user.
  * @argv: Array of command arguments.
