@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * tokenize_input - Function that toenizes the user's input
+ * tokenize_input - Function that tokenizes the user's input
  * @input: The user input string
  * Return: An array of tokens
  */
