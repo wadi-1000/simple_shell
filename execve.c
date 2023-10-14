@@ -11,21 +11,23 @@ void exec_input(char *argv[])
 {
 	pid_t pid;
 	int status;
-	
+
 	pid = fork();
-	
+
 	if (pid < 0)
 	{
 		perror("Fork failed.");
 		exit(1);
 	}
-	
+
 	if (pid == 0)
 	{
 		if (execvp(argv[0], argv) < 0)
 		{
-			fprintf(stderr, "Execution failed. Incorrect command
-					or no such file/directory.\n");
+			fprintf(stderr,
+					"Execution failed.\n"
+					"Incorrect command or no such file/directory.\n"
+					"Re-enter command.\n");
 			return;
 		}
 	}
