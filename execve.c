@@ -1,16 +1,38 @@
 #include "main.h"
 
 /**
- * exec - shifts the process to execute another program
- * @array: list of the commands that are passed to the prompt
+ * exec_input - Execute the command entered by the user.
+ * @argv: Array of command arguments.
  *
- * Return: NOthing
+ *
+ * Return: exits the process upon success or failure.
  */
-
-void exec(char *array[])
+void exec_input(char *argv[])
 {
-	if (execve(array[0], array, NULL) == -1)
+	pid_t pid;
+	int status;
+	
+	pid = fork();
+	
+	if (pid < 0)
 	{
-		perror("./shell: No such file or directory");
+		perror("Fork failed.");
+		exit(1);
 	}
+	
+	if (pid == 0)
+	{
+		if (execvp(argv[0], argv) < 0)
+		{
+			fprintf(stderr, "Execution failed. Incorrect command
+					or no such file/directory.\n");
+			return;
+		}
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+	}
+	exit(0);
 }
+
