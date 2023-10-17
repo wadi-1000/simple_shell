@@ -20,10 +20,12 @@ char **tokenize_input(char *input)
 	}
 	array[i] = NULL;
 
-	/*for (i = 0; array[i] != NULL; i++)
-	{
-		free(array[i]);
-		return (NULL);
-	}*/
+	/*
+	 * for (i = 0; array[i] != NULL; i++)
+	 * {
+	 * free(array[i]);
+	 * return (NULL);
+	 * }
+	*/
 	return (array);
 }
