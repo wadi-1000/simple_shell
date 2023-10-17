@@ -15,8 +15,8 @@ void prompt(void)
 
 	while (1)
 	{
-		printf("$ Enter command: ");
-
+		_putchar('$');
+		_putchar(32);
 
 		if (getline(&buffer, &len, stdin) == -1)
 		{
@@ -29,12 +29,6 @@ void prompt(void)
 		if (input_length > 0 && buffer[input_length - 1] == '\n')
 		{
 			buffer[input_length - 1] = '\0';
-		}
-
-		if (strlen(buffer) == 0)
-		{
-			fprintf(stderr, "Error: No input detected, re-enter command.\n");
-			continue;
 		}
 
 		array = tokenize_input(buffer);
