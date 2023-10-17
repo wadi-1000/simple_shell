@@ -1,8 +1,8 @@
-**# 0x16. C - Simple Shell**
+** 0x16. C - Simple Shell**
 
 ### A simple shell project.
 
-**### Tasks**
+** Tasks**
 
 0.  Write a beautiful code that passes the Betty checks.
 
