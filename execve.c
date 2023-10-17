@@ -7,7 +7,7 @@
  *
  * Return: exits the process upon success or failure.
  */
-void exec_input(char *argv[], char *env[])
+void exec_input(char *argv[], char *envp[])
 {
 	pid_t pid;
 	int status;
@@ -23,7 +23,7 @@ void exec_input(char *argv[], char *env[])
 	}
 	if (pid == 0)
 	{
-		if (execve(argv[0], argv, env) == -1)
+		if (execve(argv[0], argv, envp) == -1)
 		{
 			perror("./hsh");
 			exit(0);

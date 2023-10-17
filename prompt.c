@@ -11,7 +11,7 @@ void prompt(void)
 	char *buffer = NULL;
 	size_t len = 0;
 	char **array = NULL;
-	char **env = NULL;
+	char *env[] = {"MY_VARIABLE=Hello", "ANOTHER_VARIABLE=World", NULL};
 
 	while (1)
 	{

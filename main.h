@@ -13,7 +13,7 @@ void prompt(void);
 int _putchar(char c);
 char **tokenize_input(char *input);
 void free_tokens(char **tokens);
-void exec_input(char *argv[], char *env[]);
+void exec_input(char *argv[], char *envp[]);
 size_t input_length;
 void free_token(char **token);
 int _strcmp(const char *s1, const char *s2);
