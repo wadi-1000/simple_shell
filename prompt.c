@@ -11,6 +11,7 @@ void prompt(void)
 	char *buffer = NULL;
 	size_t len = 0;
 	char **array = NULL;
+	char **env = NULL;
 
 	while (1)
 	{
@@ -40,7 +41,7 @@ void prompt(void)
 
 		if (array)
 		{
-			exec_input(array);
+			exec_input(array, env);
 			free_tokens(array);
 		}
 	}

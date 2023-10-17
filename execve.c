@@ -7,34 +7,29 @@
  *
  * Return: exits the process upon success or failure.
  */
-void exec_input(char *argv[])
+void exec_input(char *argv[], char *env[])
 {
 	pid_t pid;
 	int status;
-
 	pid = fork();
 
+	if (strcmp(argv[0], "exit") == 0)
+		exit(0);
 	if (pid < 0)
 	{
 		perror("Fork failed.");
 		exit(1);
 	}
-
 	if (pid == 0)
 	{
-		if (execvp(argv[0], argv) < 0)
+		if (execve(argv[0], argv, env) == -1)
 		{
-			fprintf(stderr,
-					"Execution failed.\n"
-					"Incorrect command or no such file/directory.\n"
-					"Re-enter command.\n");
-			return;
+			perror("./hsh");
+			exit(0);
 		}
 	}
 	else
-	{
 		waitpid(pid, &status, 0);
-	}
-	exit(0);
+	return;
 }
 
