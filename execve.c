@@ -23,22 +23,10 @@ void exec_input(char *argv[], char *envp[])
 	}
 	if (pid == 0)
 	{
-		if (strcmp(argv[0], "env") == 0)
+		if (execve(argv[0], argv, envp) == -1)
 		{
-			exec_env(argv);
+			perror("./hsh");
 			exit(0);
-		}
-		else if (strcmp(argv[0], "exit") == 0)
-		{
-			exec_exit(argv);
-			exit(0);
-		}
-		else if (execvp(argv[0], argv) < 0)
-		{
-			fprintf(stderr,
-					"Execution failed. \n"
-					"Incorrect command or no such file/directory. \n"
-					"Re-enter command. \n");
 		}
 	}
 	else

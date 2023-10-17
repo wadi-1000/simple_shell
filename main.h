@@ -9,16 +9,16 @@
 #include <sys/wait.h>
 #include <error.h>
 
-
-void prompt(void);
+void prompt(char **env);
 int _putchar(char c);
 char **tokenize_input(char *input);
 void free_tokens(char **tokens);
-void exec_input(char *argv[]);
+void exec_input(char *argv[], char *envp[]);
 size_t input_length;
 void free_token(char **token);
-void exec_exit(char *argv[]);
-void exec_env(char *argv[]);
+int _strcmp(const char *s1, const char *s2);
+char *_strdup(const char *s);
+size_t _strlen(const char *s);
+void _strcpy(char *dest, const char *src);
 
-extern char **environ;
 #endif
