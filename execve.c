@@ -3,7 +3,7 @@
 /**
  * exec_input - Execute the command entered by the user.
  * @argv: Array of command arguments.
- * @env: gets the environment from where the command originates
+ * @envp: gets the environment from where the command originates
  *
  * Return: exits the process upon success or failure.
  */

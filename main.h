@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 #include <error.h>
 
-void prompt(void);
+void prompt(char **env);
 int _putchar(char c);
 char **tokenize_input(char *input);
 void free_tokens(char **tokens);

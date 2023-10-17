@@ -2,16 +2,17 @@
 
 /**
  * prompt - displays prompt and waits for user to enter commands
+ * @env: poointer to the environment variables
  *
  * Return: Nothing
  */
 
-void prompt(void)
+void prompt(char **env)
 {
 	char *buffer = NULL;
 	size_t len = 0;
 	char **array = NULL;
-	char *env[] = {"MY_VARIABLE=Hello", "ANOTHER_VARIABLE=World", NULL};
+	/*char *env[] = {"MY_VARIABLE=Hello", "ANOTHER_VARIABLE=World", NULL};*/
 
 	while (1)
 	{
