@@ -3,21 +3,19 @@
 /**
  * exec_env - Prints env variables when users enters env.
  *
- * @argv: Array of arguments.
+ * @environ: Array of environment variables.
  */
-extern char **environ;
 
-void exec_env(char *argv[])
+
+void exec_env(char **environ)
 {
-	if (strcmp(argv[0], "env") == 0)
+	if (environ != NULL)
 	{
-		char **env = environ;
+		int i;
 
-		while (*env)
+		for (i = 0; environ[i] != NULL; i++)
 		{
-			printf("%s\n", *env);
-			env++;
+			printf("%s\n", environ[i]);
 		}
-		return;
 	}
 }
