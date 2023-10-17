@@ -22,7 +22,17 @@ void exec_input(char *argv[])
 
 	if (pid == 0)
 	{
-		if (execvp(argv[0], argv) < 0)
+		if (strcmp(argv[0], "env") == 0)
+		{
+			exec_env(argv);
+			exit(0);
+		}
+		else if (strcmp(argv[0], "exit") == 0)
+		{
+			exec_exit(argv);
+			exit(0);
+		}
+		else if (execvp(argv[0], argv) < 0)
 		{
 			fprintf(stderr,
 					"Execution failed.\n"

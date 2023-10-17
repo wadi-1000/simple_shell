@@ -16,6 +16,8 @@ void free_tokens(char **tokens);
 void exec_input(char *argv[]);
 size_t input_length;
 void free_token(char **token);
+void exec_exit(char *argv[]);
+void exec_env(char *argv[]);
 
 
 #endif
