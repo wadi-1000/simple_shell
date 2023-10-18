@@ -8,10 +8,12 @@
 
 int main(void)
 {
+
 	while (1)
 	{
 		prompt();
 		exit(0);
 	}
+
 	return (0);
 }
