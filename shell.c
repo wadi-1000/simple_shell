@@ -9,11 +9,11 @@
  * Return: Always 0
  */
 
-int main(int ac, char **av, char **env)
+int shell(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
 
-	prompt(env);
+	prompt();
 	return (0);
 }
