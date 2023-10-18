@@ -14,18 +14,16 @@ char **tokenize_input(char *input)
 	token = strtok(input, " ");
 	while (token)
 	{
-		array[i] = _strdup(token);
+		array[i] = strdup(token);
 		token = strtok(NULL, " ");
 		i++;
 	}
 	array[i] = NULL;
 
-	/*
-	 * for (i = 0; array[i] != NULL; i++)
-	 * {
-	 * free(array[i]);
-	 * return (NULL);
-	 * }
-	*/
+	if (i == 0)
+	{
+		free(array);
+		return (NULL);
+	}
 	return (array);
 }

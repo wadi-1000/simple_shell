@@ -2,31 +2,25 @@
 
 /**
  * prompt - displays prompt and waits for user to enter commands
- * @env: poointer to the environment variables
  *
  * Return: Nothing
  */
 
-void prompt(char **env)
+void prompt(void)
 {
 	char *buffer = NULL;
 	size_t len = 0;
 	char **array = NULL;
-	/*char *env[] = {"MY_VARIABLE=Hello", "ANOTHER_VARIABLE=World", NULL};*/
 
 	while (1)
 	{
-		if (_isatty(STDIN_FILENO))
-		{
-			_putchar('$');
-			_putchar(32);
-		}
+		_putchar('$');
+		_putchar(32);
 
 		if (getline(&buffer, &len, stdin) == -1)
 		{
-			/*perror("No input");
-			free(buffer);*/
-			exit(0);
+			perror("No input");
+			exit(1);
 		}
 
 		input_length = strlen(buffer);
@@ -35,12 +29,17 @@ void prompt(char **env)
 		{
 			buffer[input_length - 1] = '\0';
 		}
+		if (strlen(buffer) == 0)
+		{
+			fprintf(stderr, "Error: No input detected, re-enter command. \n");
+			continue;
+		}
 
 		array = tokenize_input(buffer);
 
 		if (array)
 		{
-			exec_input(array, env);
+			exec_input(array);
 			free_tokens(array);
 		}
 	}
