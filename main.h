@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#define MAX_INPUT_LENGTH 100
+
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>

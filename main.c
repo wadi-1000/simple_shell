@@ -8,11 +8,10 @@
 
 int main(void)
 {
-	extern char **environ;
-
-	prompt();
-
-	exec_env(environ);
-
+	while (1)
+	{
+		prompt();
+		exit(0);
+	}
 	return (0);
 }

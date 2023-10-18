@@ -3,19 +3,16 @@
 /**
  * exec_input - Execute the command entered by the user.
  * @argv: Array of command arguments.
- * @envp: gets the environment from where the command originates
  *
  * Return: exits the process upon success or failure.
  */
-void exec_input(char *argv[], char *envp[])
+void exec_input(char *argv[])
 {
 	pid_t pid;
 	int status;
 
 	pid = fork();
 
-	if (_strcmp(argv[0], "exit") == 0)
-		exit(0);
 	if (pid < 0)
 	{
 		perror("Fork failed.");
@@ -25,7 +22,7 @@ void exec_input(char *argv[], char *envp[])
 	{
 		if (strcmp(argv[0], "env") == 0)
 		{
-			exec_env(argv);
+			exec_env(environ);
 			exit(0);
 		}
 		else if (strcmp(argv[0], "exit") == 0)
@@ -39,9 +36,11 @@ void exec_input(char *argv[], char *envp[])
 					"Execution failed. \n"
 					"Incorrect command or no such file/directory. \n"
 					"Re-enter command. \n");
+			return;
 		}
 	}
 	else
 		waitpid(pid, &status, 0);
+	exit(0);
 }
 
