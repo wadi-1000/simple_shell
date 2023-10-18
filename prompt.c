@@ -16,14 +16,17 @@ void prompt(char **env)
 
 	while (1)
 	{
-		_putchar('$');
-		_putchar(32);
+		if (_isatty(STDIN_FILENO))
+		{
+			_putchar('$');
+			_putchar(32);
+		}
 
 		if (getline(&buffer, &len, stdin) == -1)
 		{
-			perror("No input");
-			free(buffer);
-			exit(1);
+			/*perror("No input");
+			free(buffer);*/
+			exit(0);
 		}
 
 		input_length = strlen(buffer);
