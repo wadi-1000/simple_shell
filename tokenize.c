@@ -8,43 +8,27 @@
 char **tokenize_input(char *input)
 {
 	char *token;
-	char **array = NULL;
+	char **array = malloc(1024 * sizeof(char *));
 	int i = 0;
-	int j;
 
-
-	array = malloc(1024 * sizeof(char *));
 	if (array == NULL)
 	{
-		perror("malloc");
-		exit(1);
+		perror("Memory allocation failed.");
+		return (NULL);
 	}
-
 	token = strtok(input, " ");
 	while (token)
 	{
-		array[i] = strdup(token);
+		array[i] = _strdup(token);
 		if (array[i] == NULL)
 		{
-			perror("strdup");
-			for (j = 0; j < i; j++)
-			{
-				free(array[j]);
-				exit(1);
-			}
-			free(array);
-			exit(1);
+			perror("Memory allocation failed.");
+			free_tokens(array);
+			return (NULL);
 		}
 		token = strtok(NULL, " ");
 		i++;
 	}
-
 	array[i] = NULL;
-
-	if (i == 0)
-	{
-		free(array);
-		return (NULL);
-	}
 	return (array);
 }

@@ -9,12 +9,12 @@
 
 char *_strdup(const char *s)
 {
-	char *d = malloc(strlen(s) + 1);
+	char *d = malloc(_strlen(s) + 1);
 
 	if (d == NULL)
 	{
 		return (NULL);
 	}
-	strcpy(d, s);
+	_strcpy(d, s);
 	return (d);
 }
