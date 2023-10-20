@@ -2,33 +2,47 @@
 
 /**
  * tokenize_input - Function that tokenizes the user's input
- * @input: The user input string
+ * @cmd: The user input string
  * Return: An array of tokens
  */
-char **tokenize_input(char *input)
+char **tokenize_input(char *cmd)
 {
-	char *token;
-	char **array = malloc(1024 * sizeof(char *));
-	int i = 0;
+	char *buf = NULL, *bufp = NULL, *token = NULL, *delim = " :\t\r\n";
+	char **tokens = NULL;
+	int tokenize = 1;
+	size_t index = 0, mode = 0;
 
-	if (array == NULL)
-	{
-		perror("Memory allocation failed.");
+	buf  = _strdup(cmd);
+
+	if (!buf)
 		return (NULL);
+	bufp = buf;
+	while (*bufp)
+	{
+		if (_strchr(delim, *bufp) != NULL && mode == 0)
+		{
+			tokenize++;
+			mode = 1;
+		}
+		else if
+			(_strchr(delim, *bufp) == NULL && mode == 1)
+				mode = 0;
+		bufp++;
 	}
-	token = strtok(input, " ");
+	tokens = malloc(sizeof(char *) * (tokenize + 1));
+	token = strtok(buf, delim);
 	while (token)
 	{
-		array[i] = _strdup(token);
-		if (array[i] == NULL)
+		tokens[index] = _strdup(token);
+		if (tokens[index] == NULL)
 		{
-			perror("Memory allocation failed.");
-			free_tokens(array);
+			free(tokens);
 			return (NULL);
 		}
-		token = strtok(NULL, " ");
-		i++;
+		token = strtok(NULL, delim);
+		index++;
 	}
-	array[i] = NULL;
-	return (array);
+	tokens[index] = '\0';
+	free(buf);
+	return (tokens);
 }

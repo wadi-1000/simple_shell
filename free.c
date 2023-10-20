@@ -1,19 +1,22 @@
 #include "main.h"
 
 /**
- * free_tokens - Function that fress the memory used by the array
- * @tokens: Array of tokens to free
+ * free_buf - Function that fress the memory used by the array
+ * @buf: Array of tokens to free
  *
  * Return: Nothing
  */
-void free_tokens(char **tokens)
+void free_buf(char **buf)
 {
-	int i;
+	int i = 0;
 
-	for (i = 0; tokens[i]; i++)
+	if (!buf || buf == NULL)
+		return;
+	while (buf[i])
 	{
-		free(tokens[i]);
+		free(buf[i]);
+		i++;
 	}
-	free(tokens);
+	free(buf);
 }
 

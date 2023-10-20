@@ -7,14 +7,22 @@
  * Return: pointer to the duplicated string
  */
 
-char *_strdup(const char *s)
+char *_strdup(char *s)
 {
-	char *d = malloc(_strlen(s) + 1);
+	char *ptr;
+	int i, len;
 
-	if (d == NULL)
-	{
+	if (s == NULL)
 		return (NULL);
-	}
-	_strcpy(d, s);
-	return (d);
+
+	len = _strlen(s);
+
+	ptr = malloc(sizeof(char) * (len + 1));
+	if (!ptr)
+		return (NULL);
+	for (i = 0; *s != '\0'; s++, i++)
+		ptr[i] = s[0];
+
+	ptr[i++] = '\0';
+	return (ptr);
 }
