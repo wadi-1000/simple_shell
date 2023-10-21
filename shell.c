@@ -27,7 +27,7 @@ int main(int ac, char **av, char *envp[])
 		free_buf(args);
 		free(patharg);
 		prompt();
-		linesize = getline(&cmd, &buffsize, stdin);
+		linesize = _getline(&cmd, &buffsize, stdin);
 		if (linesize < 0)
 			break;
 		cond.count++;

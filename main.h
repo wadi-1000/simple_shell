@@ -41,7 +41,9 @@ char *_strchr(char *s, char c);
 char *check_path(char **path, char *cmd);
 char *get_path(void);
 int my_strcmp(const char *s1, const char *s2);
-
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+char *my_strtok(char *str, char *delimiters);
+void _strcpy(char *dest, const char *src);
 
 
 

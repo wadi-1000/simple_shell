@@ -30,7 +30,7 @@ char **tokenize_input(char *cmd)
 		bufp++;
 	}
 	tokens = malloc(sizeof(char *) * (tokenize + 1));
-	token = strtok(buf, delim);
+	token = my_strtok(buf, delim);
 	while (token)
 	{
 		tokens[index] = _strdup(token);
@@ -39,7 +39,7 @@ char **tokenize_input(char *cmd)
 			free(tokens);
 			return (NULL);
 		}
-		token = strtok(NULL, delim);
+		token = my_strtok(NULL, delim);
 		index++;
 	}
 	tokens[index] = '\0';
