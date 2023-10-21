@@ -8,7 +8,7 @@
  */
 int handle_builtins(char **cmd, char *command)
 {
-	struct builtins builtins = {"env", "exit"};
+	struct builtins builtins = {"env", "exit", "setenv", "cd", "unsetenv"};
 
 	if (my_strcmp(*cmd, builtins.env) == 0)
 	{
@@ -18,6 +18,16 @@ int handle_builtins(char **cmd, char *command)
 	else if (my_strcmp(*cmd, builtins.exit) == 0)
 	{
 		exec_exit(cmd, command);
+		return (1);
+	}
+	else if (my_strcmp(*cmd, builtins.setenv) == 0)
+	{
+		exec_setenv(cmd, command);
+		return (1);
+	}
+	else if (my_strcmp(*cmd, builtins.unsetenv) == 0)
+	{
+		exec_unsetenv(cmd, command);
 		return (1);
 	}
 	return (0);
