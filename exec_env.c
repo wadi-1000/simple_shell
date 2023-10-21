@@ -30,14 +30,14 @@ void exec_setenv(char **cmd, char *command)
 {
 	if (cmd[1] != NULL && cmd[2] != NULL)
 	{
-		if (setenv(cmd[1], cmd[2], 1) != 0)
+		if (_setenv(cmd[1], cmd[2], 1) != 0)
 		{
-			fprintf(stderr, "setenv: Failed to set the environment variable\n");
+			_fprintf(stderr, "setenv: Failed to set the environment variable\n");
 		}
 	}
 	else
 	{
-		fprintf(stderr, "Usage: %s VARIABLE VALUE\n", command);
+		_fprintf(stderr, "Usage: %s VARIABLE VALUE\n", command);
 	}
 	free_buf(cmd);
 	free(command);
@@ -53,16 +53,29 @@ void exec_setenv(char **cmd, char *command)
 
 void exec_unsetenv(char **cmd, char *command)
 {
+	int i, j;
+
 	if (cmd[1] != NULL)
 	{
-		if (unsetenv(cmd[1]) != 0)
+		i = 0;
+		while (environ[i] != NULL)
 		{
-			fprintf(stderr, "unsetenv: Failed to unset the environment variable\n");
+			if (_strcmp(environ[i], cmd[1]) == 0 && environ[i][_strlen(cmd[1])] == '=')
+			{
+				j = i;
+				while (environ[j] != NULL)
+				{
+					environ[j] = environ[j + 1];
+					j++;
+				}
+				break;
+			}
+			i++;
 		}
 	}
 	else
 	{
-		fprintf(stderr, "Usage: %s VARIABLE\n", command);
+		_fprintf(stderr, "Usage: %s VARIABLE\n", command);
 	}
 	free_buf(cmd);
 	free(command);
@@ -82,7 +95,7 @@ void exec_cd(char **cmd, char *command)
 	{
 		if (chdir(cmd[1]) != 0)
 		{
-			fprintf(stderr, "cd: %s: No such file or directory\n", cmd[1]);
+			_fprintf(stderr, "cd: %s: No such file or directory\n", cmd[1]);
 		}
 		else
 		{
@@ -90,30 +103,30 @@ void exec_cd(char **cmd, char *command)
 
 			if (getcwd(cwd, sizeof(cwd)) != NULL)
 			{
-				setenv("PWD", cwd, 1);
+				_setenv("PWD", cwd, 1);
 			}
 			else
 			{
-				fprintf(stderr, "cd: Failed to update PWD environment variable\n");
+				_fprintf(stderr, "cd: Failed to update PWD environment variable\n");
 			}
 		}
 	}
 	else
 	{
-		char *home = getenv("HOME");
+		char *home = _getenv("HOME");
 
 		if (home != NULL)
 		{
 			if (chdir(home) != 0)
 			{
-				fprintf(stderr, "cd: %s: No such file or directory\n", home);
+				_fprintf(stderr, "cd: %s: No such file or directory\n", home);
 			}
 			else
 			{
-				setenv("PWD", home, 1); }}
+				_setenv("PWD", home, 1); }}
 		else
 		{
-			fprintf(stderr, "cd: HOME not set\n"); }}
+			_fprintf(stderr, "cd: HOME not set\n"); }}
 	free_buf(cmd);
 	free(command); }
 

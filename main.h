@@ -46,6 +46,10 @@ char *my_strtok(char *str, char *delimiters);
 void _strcpy(char *dest, const char *src);
 void exec_unsetenv(char **cmd, char *command);
 void exec_setenv(char **cmd, char *command);
+int _setenv(const char *name, const char *value, int overwrite);
+int _fprintf(FILE *stream, const char *format, ...);
+int _strcmp(const char *s1, const char *s2);
+char *_getenv(char *name);
 
 
 /**

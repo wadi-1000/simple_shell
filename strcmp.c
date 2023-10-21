@@ -21,3 +21,21 @@ int _strngcmp(char *s1, char *s2, int n)
 	}
 	return (0);
 }
+
+/**
+ * _strcmp - compares two strings
+ * @s1: one of the strings
+ * @s2: the other string
+ * 
+ * Return: 0 if they are the same
+ */
+
+int _strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(const unsigned char*)s1 - *(const unsigned char*)s2);
+}
