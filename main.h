@@ -40,6 +40,7 @@ char *_strdup(char *s);
 char *_strchr(char *s, char c);
 char *check_path(char **path, char *cmd);
 char *get_path(void);
+int my_strcmp(const char *s1, const char *s2);
 
 
 

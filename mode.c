@@ -26,8 +26,6 @@ void mode_handler(int s)
  */
 int cmd_check(char **cmd, char *buf)
 {
-	(void)buf;
-
 	if (handle_builtins(cmd, buf))
 		return (1);
 	else if (**cmd == '/')
@@ -45,7 +43,7 @@ int cmd_check(char **cmd, char *buf)
 
 /**
  * ctrl_d - exits shell when user presses ctrl d
- * @signa - parameter
+ * @signa: parameter
  */
 
 void ctrl_d(int signa)

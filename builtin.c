@@ -10,12 +10,12 @@ int handle_builtins(char **cmd, char *command)
 {
 	struct builtins builtins = {"env", "exit"};
 
-	if (stricmp(*cmd, builtins.env) == 0)
+	if (my_strcmp(*cmd, builtins.env) == 0)
 	{
 		exec_env();
 		return (1);
 	}
-	else if (stricmp(*cmd, builtins.exit) == 0)
+	else if (my_strcmp(*cmd, builtins.exit) == 0)
 	{
 		exec_exit(cmd, command);
 		return (1);
